@@ -2,7 +2,13 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
 ---
 
 <!doctype html>
@@ -13,37 +19,174 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero">
+				<h1>{SITE_TITLE}</h1>
+				<p class="description">{SITE_DESCRIPTION}</p>
+				<a href="/blog" class="cta">Read the blog &rarr;</a>
+			</section>
+
+			{posts.length > 0 && (
+				<>
+					<hr class="divider" />
+					<section class="recent-posts">
+						<p class="section-kicker">Recent Writing</p>
+						<ul class="post-grid">
+							{posts.map((post) => (
+								<li class="post-card">
+									<a href={`/blog/${post.slug}/`}>
+										{post.data.heroImage && (
+											<img
+												src={post.data.heroImage.src}
+												alt=""
+												class="card-image"
+											/>
+										)}
+										<div class="card-body">
+											<time class="card-date">
+												<FormattedDate date={post.data.pubDate} />
+											</time>
+											<h2 class="card-title">{post.data.title}</h2>
+											{post.data.description && (
+												<p class="card-description">{post.data.description}</p>
+											)}
+										</div>
+									</a>
+								</li>
+							))}
+						</ul>
+					</section>
+				</>
+			)}
 		</main>
 		<Footer />
 	</body>
 </html>
+<style>
+	/* Hero */
+	.hero {
+		padding: 7.5rem 0 6.25rem;
+		max-width: 700px;
+	}
+	.hero h1 {
+		font-size: clamp(2.4rem, 5vw, 3.6rem);
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+		margin-bottom: 1.25rem;
+	}
+	.description {
+		font-size: 1.15rem;
+		line-height: 1.65;
+		color: var(--color-olive-gray);
+		max-width: 560px;
+		margin-bottom: 2rem;
+	}
+	.cta {
+		display: inline-block;
+		color: var(--color-terracotta);
+		text-decoration: none;
+		font-size: 1rem;
+		font-weight: 500;
+		font-family: var(--font-sans);
+	}
+	.cta:hover {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		color: #b5542f;
+	}
+
+	/* Divider */
+	.divider {
+		border: none;
+		border-top: 1px solid var(--color-border-cream);
+		margin: 0;
+	}
+
+	/* Recent posts */
+	.recent-posts {
+		padding: 3rem 0 6.25rem;
+	}
+	.section-kicker {
+		font-size: 0.75rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--color-stone-gray);
+		font-family: var(--font-sans);
+		margin-bottom: 1.5rem;
+	}
+
+	/* Card grid */
+	.post-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.post-card {
+		background: var(--color-ivory);
+		border: 1px solid var(--color-border-cream);
+		border-radius: 8px;
+		box-sizing: border-box;
+		overflow: hidden;
+		box-shadow: var(--shadow-whisper);
+		will-change: transform;
+		transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+	}
+	.post-card:hover {
+		transform: translateY(-2px);
+		box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 32px;
+	}
+	.post-card a {
+		display: block;
+		color: inherit;
+		text-decoration: none;
+		height: 100%;
+	}
+	.card-image {
+		width: 100%;
+		height: 180px;
+		object-fit: cover;
+		border-radius: 8px 8px 0 0;
+		display: block;
+	}
+	.card-body {
+		padding: 1.5rem;
+	}
+	.card-date {
+		display: block;
+		font-size: 0.8rem;
+		color: var(--color-meta-text);
+		letter-spacing: 0.04em;
+		margin-bottom: 0.5rem;
+		font-family: var(--font-sans);
+	}
+	.card-title {
+		font-size: 1.2rem;
+		font-weight: 500;
+		line-height: 1.3;
+		color: var(--color-near-black);
+		margin: 0 0 0.5rem;
+	}
+	.card-description {
+		font-size: 0.9rem;
+		color: var(--color-olive-gray);
+		line-height: 1.55;
+		margin: 0;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	/* Tablet */
+	@media (max-width: 900px) {
+		.post-grid { grid-template-columns: repeat(2, 1fr); }
+	}
+
+	/* Mobile */
+	@media (max-width: 600px) {
+		.hero { padding: 3rem 0; }
+		.post-grid { grid-template-columns: 1fr; gap: 1rem; }
+	}
+</style>

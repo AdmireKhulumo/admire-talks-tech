@@ -1,141 +1,202 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+@layer base {
 
-:root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
-}
-body {
-	font-family: var(--font-atkinson);
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
-}
-main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
-}
-h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
-	font-weight: 700;
-}
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
-}
+  /* =====================
+     DESIGN TOKENS
+     ===================== */
+  :root {
+    /* Color palette */
+    --color-parchment: #f5f4ed;     /* page background */
+    --color-ivory: #faf9f5;         /* card / elevated surface */
+    --color-near-black: #141413;    /* primary text */
+    --color-olive-gray: #5e5d59;    /* secondary text — 5.75:1 on parchment, AA PASS */
+    --color-stone-gray: #87867f;    /* large/decorative text only — 3.16:1, AA FAIL at normal size */
+    --color-meta-text: #6b6a65;     /* normal-size meta/caption text — 4.6:1, AA PASS */
+    --color-terracotta: #c96442;    /* links, accents, CTA — 5.31:1, AA PASS */
+    --color-border-cream: #f0eee6;  /* card borders, dividers */
+    --color-focus-blue: #3898ec;    /* :focus-visible only — the one cool color */
+    --shadow-whisper: rgba(0, 0, 0, 0.05) 0px 4px 24px;
+    --font-serif: Georgia, 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+    --font-sans: system-ui, -apple-system, Arial, sans-serif;
+    --font-mono: ui-monospace, Arial, monospace;
+  }
 
-.sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
-}
+  /* =====================
+     RESET
+     ===================== */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  /* =====================
+     BASE TYPOGRAPHY
+     ===================== */
+  body {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem; /* 17px in rem — respects user browser font size */
+    line-height: 1.60;
+    background-color: var(--color-parchment);
+    color: var(--color-near-black);
+    margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  main {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 2rem 1rem;
+  }
+
+  /* Headings — serif at weight 500 (DESIGN.md: never bold for serif) */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--color-near-black);
+    margin-block: 0 0.5em;
+  }
+
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.6rem; }
+  h4 { font-size: 1.3rem; }
+  h5 { font-size: 1.1rem; }
+
+  strong, b { font-weight: 700; }
+
+  /* Links — terracotta + underline (WCAG 1.4.1 requires non-color distinction) */
+  a {
+    color: var(--color-terracotta);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  a:hover {
+    color: #b5542f; /* slightly darker on hover — more contrast */
+    text-decoration-thickness: 2px;
+  }
+
+  p { margin-bottom: 1em; }
+
+  /* Images */
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  /* Code */
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem; /* 15px */
+    letter-spacing: -0.02em;
+    background-color: var(--color-border-cream);
+    border-radius: 4px;
+    padding: 0.15em 0.3em;
+  }
+  pre {
+    font-family: var(--font-mono);
+    background-color: var(--color-border-cream);
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    line-height: 1.6;
+  }
+  pre > code {
+    all: unset;
+    font-family: var(--font-mono);
+  }
+
+  /* Blockquote */
+  blockquote {
+    border-inline-start: 3px solid var(--color-border-cream);
+    padding-inline-start: 1.25em;
+    margin-inline: 0;
+    color: var(--color-olive-gray);
+    font-style: italic;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--color-border-cream);
+  }
+
+  table { width: 100%; }
+
+  textarea { width: 100%; font-size: 1rem; }
+  input { font-size: 1rem; }
+
+  /* =====================
+     FOCUS & MOTION
+     ===================== */
+  :focus-visible {
+    outline: 2px solid var(--color-focus-blue);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* =====================
+     UTILITIES
+     ===================== */
+  .sr-only {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* =====================
+     PROSE (markdown blog post content)
+     ===================== */
+  .prose {
+    max-width: 68ch; /* ~65 chars/line — Bringhurst optimal measure */
+    margin-inline: auto;
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-near-black);
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 3;
+    overflow-wrap: break-word;
+  }
+
+  .prose p {
+    margin-block-end: 1.5em;
+  }
+
+  .prose h2 {
+    margin-block: 2.5em 0.75em;
+  }
+
+  .prose h3 {
+    margin-block: 2em 0.5em;
+  }
+
+  .prose > p:first-of-type {
+    font-size: 1.125rem;
+    color: var(--color-olive-gray);
+  }
+
+  /* =====================
+     MOBILE
+     ===================== */
+  @media (max-width: 720px) {
+    body { font-size: 1rem; }
+    main { padding: 1rem; }
+  }
+
+} /* end @layer base */

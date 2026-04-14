@@ -4,7 +4,10 @@ const today = new Date();
 
 <footer>
 	<p>&copy; {today.getFullYear()} Admire Khulumo. All rights reserved.</p>
-	<!-- TODO: add your social links here -->
+	<div class="social-links">
+		<a href="https://www.linkedin.com/in/admire-khulumo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+		<a href="https://github.com/AdmireKhulumo" target="_blank" rel="noopener noreferrer">GitHub</a>
+	</div>
 </footer>
 <style>
 	footer {
@@ -17,5 +20,19 @@ const today = new Date();
 	footer p {
 		margin: 0;
 		font-size: 0.875rem;
+	}
+	.social-links {
+		margin-top: 0.75rem;
+		display: flex;
+		justify-content: center;
+		gap: 1.25rem;
+	}
+	.social-links a {
+		font-size: 0.875rem;
+		color: var(--color-olive-gray);
+		text-decoration: none;
+	}
+	.social-links a:hover {
+		text-decoration: underline;
 	}
 </style>

@@ -1,6 +1,7 @@
 {
   "enabledPlugins": {
     "skill-creator@claude-plugins-official": true,
-    "compound-engineering@every-marketplace": true
+    "compound-engineering@every-marketplace": true,
+    "caveman@caveman": true
   }
 }

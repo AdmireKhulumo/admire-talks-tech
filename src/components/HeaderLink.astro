@@ -17,8 +17,8 @@ const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
 		display: inline-block;
 		text-decoration: none;
 	}
+	/* Active state handled by border-bottom in Header.astro */
 	a.active {
-		font-weight: bolder;
-		text-decoration: underline;
+		font-weight: 500;
 	}
 </style>

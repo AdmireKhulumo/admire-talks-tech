@@ -1,6 +1,6 @@
 ---
 name: ui-design
-description: >
+description:
   Design and implement UI components for the admire-talks-tech blog following the project's
   warm, editorial design system. Use this skill whenever designing, building, or modifying
   ANY UI element — hero sections, cards, buttons, navigation, blog post layouts, forms,

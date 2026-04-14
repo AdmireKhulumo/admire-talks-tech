@@ -33,6 +33,8 @@ git log --oneline -10
 git diff HEAD~1..HEAD --stat
 ```
 
+Read the .gitignore file to not include files which have been ignored, these will not be a part of the commit anyway.
+
 ## Step 3: Fill the Template
 
 Map the gathered information to each section from `docs/pull_request_template.md`, keeping things super simple for other devs and not too many little details:

@@ -1,6 +1,6 @@
 ---
 name: create-pr-description
-description: Generates a PR description by reading docs/pull_request_template.md and filling it with bulleted points derived from the git diff, commit log, and changed files on the current branch. Use this skill when the user asks to create a PR description, write a pull request body, or summarise changes for a PR in the BNF OMRAS project.
+description: Generates a PR description by reading docs/pull_request_template.md and filling it with bulleted points derived from the git diff, commit log, and changed files on the current branch. ALWAYS use this skill whenever the user asks to create a PR, push a PR, open a pull request, or make a PR — in any form. This skill MUST run before `gh pr create` is called, every single time.
 ---
 
 # Create PR Description
@@ -58,9 +58,11 @@ A bulleted list of the specific things that were built or changed. Each bullet d
 
 ## Step 4: Output
 
-Print the completed PR description as a fenced markdown code block so the user can copy it directly.
+Print the completed PR description as a fenced markdown code block so the user can review it.
 
-Do **not** open a PR, create a file, or run `gh pr create` automatically — output the description text only, and wait for the user to confirm before doing anything further.
+Then ask for confirmation. Once confirmed:
+1. Push the branch if not already pushed: `git push -u origin HEAD`
+2. Run `gh pr create` using the generated description as the body
 
 ## Example Output
 

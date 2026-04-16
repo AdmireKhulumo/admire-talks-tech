@@ -46,4 +46,5 @@ This is an overview of the steps I took to get my setup running and produce the 
 * [Skill creator skill from Anthropic](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md)
 * [Astro](https://astro.build/), the underlying framework used on the blog
 
-Let me know how you use this setup, or if you have something different instead :)
+---
+Let me know how you use this setup, or if you have something different instead 🙌

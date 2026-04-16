@@ -5,8 +5,9 @@ pubDate: 'April 16 2026'
 heroImage: '../../assets/awesome-design.png'
 ---
 
-### My UI design challenge
 AI isn't great at designing good-looking frontend components out-of-the-box, and neither am I.
+
+### My UI design challenge
 
 This blog's first UI layout came from an Astro template which felt pretty generic. I considered Tailwind, but setting up the right components and design styles felt like an unnecessary overhead. Doing designs in Figma instead was even worse, complete overkill for what is meant to be a simple blog.
 

@@ -1,7 +1,7 @@
 ---
 title: 'How to Approach AI Engineering Across Your Team'
 description: "How to approach AI engineering so your whole team works the same way, covering model choice, shared configs, and compounding learnings across every engineer's machine"
-pubDate: 'April 28 2026'
+pubDate: 'May 04 2026'
 heroImage: '../../assets/claude-folders.png'
 ---
 

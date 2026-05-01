@@ -40,18 +40,12 @@ const posts = (await getCollection('blog')).sort(
 			ul li:hover {
 				transform: translateY(-2px);
 			}
-			ul li:first-child {
-				grid-column: 1 / -1;
-			}
-			ul li:first-child .title {
-				font-size: 2rem;
-			}
 			ul li img {
 				display: block;
 				width: 100%;
 				height: 200px;
 				object-fit: cover;
-				border-radius: 0;
+				border-radius: 8px 8px 0 0;
 				margin: 0;
 			}
 			ul li a {
@@ -59,20 +53,6 @@ const posts = (await getCollection('blog')).sort(
 				text-decoration: none;
 				color: inherit;
 				padding: 1.25rem;
-			}
-			ul li:first-child a {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 1.5rem;
-				padding: 0;
-				align-items: center;
-			}
-			ul li:first-child img {
-				height: 280px;
-				border-radius: 8px 0 0 8px;
-			}
-			ul li:first-child .card-text {
-				padding: 1.5rem 1.5rem 1.5rem 0;
 			}
 			.card-text {
 				display: block;
@@ -99,22 +79,6 @@ const posts = (await getCollection('blog')).sort(
 				ul {
 					grid-template-columns: 1fr;
 					gap: 1rem;
-				}
-				ul li:first-child {
-					grid-column: auto;
-				}
-				ul li:first-child a {
-					grid-template-columns: 1fr;
-				}
-				ul li:first-child img {
-					border-radius: 8px 8px 0 0;
-					height: 200px;
-				}
-				ul li:first-child .card-text {
-					padding: 1.25rem;
-				}
-				ul li:first-child .title {
-					font-size: 1.2rem;
 				}
 			}
 		</style>

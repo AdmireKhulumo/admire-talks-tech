@@ -1,16 +1,16 @@
 ---
-title: 'Sharing AI Engineering Tools in a Team'
-description: 'How to enforce better coding standards across a team by sharing AI engineering tools'
+title: 'Setting Up AI Engineering Across Your Team'
+description: 'How to structure AI engineering so your whole team works the same way — covering model choice, shared configs, and compounding learnings across every engineer's machine'
 pubDate: 'April 28 2026'
 heroImage: '../../assets/claude-folders.png'
 ---
 
-If everyone does whatever they like in a repo, then there will be chaos. We need some control, a logic to the madness, something to standardise things.
+If everyone does whatever they like in a repo, then there will be chaos. We need some control, a logic to the madness, something to standardise things, a clear _ways of working_ for AI engineering in a team.
 
 ### The Why
 Call me controlling if you want, but as a senior engineer, enforcing good standard coding practices to ensure high quality code and maintainability really matters to me. It makes PR reviews simpler.
 
-This is a collection of my thoughts on how to make sure that everyone produces the same quality of code when using AI. If it works well, then it is great for everyone in the team. If it sucks, then everyone can contribute to making it better.
+This is a collection of my thoughts on how to make sure that everyone produces the same quality of code when using AI. If it works well, then it is great for everyone in the team. If it sucks, then everyone can contribute to making it better. Either way, we move as a team with a clear established way of working with AI engineering.
 
 ### The How
 

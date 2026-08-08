@@ -1,7 +1,7 @@
 ---
 title: 'How to Approach AI Engineering Across Your Team'
 description: "How to approach AI engineering so your whole team works the same way, covering model choice, shared configs, and compounding learnings across every engineer's machine"
-pubDate: 'May 04 2026'
+pubDate: 'July 04 2026'
 heroImage: '../../assets/claude-folders.png'
 ---
 
@@ -26,4 +26,4 @@ I prefer to use the same coding plugin across the team. Workflow plugins general
 An agent should get better after each run. As an engineer, when I come across an issue and find a way to solve it, I learn from that and don't (or shouldn't) repeat the same error. That knowledge stacks up over time. An AI agent should also learn from every time an engineer prompts it, or when it makes a mistake. With each engineer coding on a different computer and AI agent, we need a way to share those learnings across every engineer's machine. Every Inc calls this the compound engineering loop, the idea that the agent compounds knowledge from past mistakes and solutions so it doesn't repeat them in the future. This is gold. With that plugin, learnings are stored in `docs/solutions` and committing this to your git history ensures that every engineer's agent has access to solutions learned by agents run by other engineers, thereby spreading the collective knowledge across the team.
 
 ---
-The good thing is that when the team puts effort into making this way of working better, it improves overall, along with the consistency of the team's AI output. Win, win. 🙌
+The good thing is it is a lot easier to improve a way of working together as a team than individually. Consistency of the whole team's AI output gets better at the same time. Win, win. 🙌
